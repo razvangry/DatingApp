@@ -34,7 +34,7 @@ export class AccountService {
         }
       })
     )
-  }
+  }s
 
   setCurrentUser(user: User) {
     localStorage.setItem('user', JSON.stringify(user));
