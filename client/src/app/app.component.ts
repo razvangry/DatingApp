@@ -8,7 +8,7 @@ import { AccountService } from './_services/account.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'The Dating app';
+  title = 'The Angular app';
   users: any;
 
   constructor(private accountService: AccountService) {}
