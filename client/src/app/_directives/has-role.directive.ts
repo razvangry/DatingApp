@@ -1,6 +1,6 @@
 import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { take } from 'rxjs/operators';
-import { User } from '../models/user';
+import { User } from '../_models/user';
 import { AccountService } from '../_services/account.service';
 
 @Directive({
@@ -10,13 +10,13 @@ export class HasRoleDirective implements OnInit {
   @Input() appHasRole: string[];
   user: User;
 
-  constructor(private viewContainerRef: ViewContainerRef, 
+  constructor(private viewContainerRef: ViewContainerRef,
     private templateRef: TemplateRef<any>,
-    private accountService: AccountService) { 
-      this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
-        this.user = user;
-      })
-    }
+    private accountService: AccountService) {
+    this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
+      this.user = user;
+    })
+  }
 
   ngOnInit(): void {
     if (!this.user?.roles || this.user == null) {

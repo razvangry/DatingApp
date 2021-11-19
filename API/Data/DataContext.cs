@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {
-    public class DataContext : IdentityDbContext<AppUser, AppRole, int, 
-        IdentityUserClaim<int>, AppUserRole, IdentityUserLogin<int>, 
+    public class DataContext : IdentityDbContext<AppUser, AppRole, int,
+        IdentityUserClaim<int>, AppUserRole, IdentityUserLogin<int>,
         IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
         public DataContext(DbContextOptions options) : base(options)
@@ -15,6 +15,8 @@ namespace API.Data
 
         public DbSet<UserLike> Likes { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<Connection> Connections { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -25,7 +27,7 @@ namespace API.Data
                 .WithOne(u => u.User)
                 .HasForeignKey(ur => ur.UserId)
                 .IsRequired();
-            
+
             builder.Entity<AppRole>()
                 .HasMany(ur => ur.UserRoles)
                 .WithOne(u => u.Role)
@@ -33,7 +35,7 @@ namespace API.Data
                 .IsRequired();
 
             builder.Entity<UserLike>()
-                .HasKey(k => new {k.SourceUserId, k.LikedUserId});
+                .HasKey(k => new { k.SourceUserId, k.LikedUserId });
 
             builder.Entity<UserLike>()
                 .HasOne(s => s.SourceUser)

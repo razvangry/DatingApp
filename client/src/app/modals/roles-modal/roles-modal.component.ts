@@ -2,7 +2,7 @@ import { ThrowStmt } from '@angular/compiler';
 import { EventEmitter } from '@angular/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { User } from 'src/app/models/user';
+import { User } from 'src/app/_models/user';
 
 @Component({
   selector: 'app-roles-modal',

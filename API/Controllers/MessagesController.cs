@@ -17,7 +17,7 @@ namespace API.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IMessageRepository _messageRepository;
         private readonly IMapper _mapper;
-        public MessagesController(IUserRepository userRepository, IMessageRepository messageRepository, 
+        public MessagesController(IUserRepository userRepository, IMessageRepository messageRepository,
             IMapper mapper)
         {
             _mapper = mapper;
@@ -55,14 +55,14 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessagesForUser([FromQuery] 
+        public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessagesForUser([FromQuery]
             MessageParams messageParams)
         {
             messageParams.Username = User.GetUsername();
 
             var messages = await _messageRepository.GetMessagesForUser(messageParams);
 
-            Response.AddPaginationHeader(messages.CurrentPage, messages.PageSize, 
+            Response.AddPaginationHeader(messages.CurrentPage, messages.PageSize,
                 messages.TotalCount, messages.TotalPages);
 
             return messages;
@@ -77,7 +77,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteMessage(int id) 
+        public async Task<ActionResult> DeleteMessage(int id)
         {
             var username = User.GetUsername();
 

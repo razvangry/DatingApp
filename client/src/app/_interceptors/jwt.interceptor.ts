@@ -8,12 +8,12 @@ import {
 import { Observable } from 'rxjs';
 import { AccountService } from '../_services/account.service';
 import { take } from 'rxjs/operators';
-import { User } from '../models/user';
+import { User } from '../_models/user';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let currentUser: User;
